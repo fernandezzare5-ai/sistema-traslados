@@ -1,24 +1,67 @@
 <!DOCTYPE html>
-
 <html>
 
 <head>
-<title>Sistema de Traslados</title>
+
+<title>Sistema Traslados</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="../js/supabase.js"></script>
+
 </head>
 
 
 <body>
 
+
 <h1>
-Sistema de Gestión de Traslados
+Sistema de Traslados
 </h1>
 
 
-<p>
-Migración desde Google Apps Script a Supabase
+<p id="estado">
+Probando conexión...
 </p>
+
+
+
+<script>
+
+
+async function probar(){
+
+
+const {data,error}=await supabaseClient
+.from("usuarios")
+.select("*");
+
+
+
+if(error){
+
+document.getElementById("estado").innerHTML =
+"❌ Error: "+error.message;
+
+}
+else{
+
+document.getElementById("estado").innerHTML =
+"✅ Conexión correcta. Usuarios encontrados: "
++ data.length;
+
+}
+
+
+}
+
+
+probar();
+
+
+</script>
 
 
 </body>
 
-</html>
+</html>8
