@@ -3,11 +3,60 @@
 
 <head>
 
-<title>Sistema Traslados</title>
+<title>Sistema de Traslados</title>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<!-- Librería Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
+
+<!-- Nuestra conexión -->
 <script src="../js/supabase.js"></script>
+
+
+<style>
+
+body{
+
+font-family:Arial;
+background:#f1f5f9;
+padding:40px;
+
+}
+
+
+.contenedor{
+
+background:white;
+max-width:600px;
+margin:auto;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px #ccc;
+
+}
+
+
+h1{
+
+color:#1565c0;
+
+}
+
+
+#estado{
+
+padding:15px;
+margin-top:20px;
+border-radius:8px;
+font-weight:bold;
+
+}
+
+</style>
+
 
 </head>
 
@@ -15,53 +64,92 @@
 <body>
 
 
+<div class="contenedor">
+
+
 <h1>
-Sistema de Traslados
+🚚 Sistema de Traslados
 </h1>
 
 
-<p id="estado">
-Probando conexión...
+<p>
+Prueba de conexión con Supabase
 </p>
+
+
+<div id="estado">
+⏳ Probando conexión...
+</div>
+
+
+</div>
+
 
 
 
 <script>
 
 
-async function probar(){
+async function probarConexion(){
+
 
 
 const {data,error}=await supabaseClient
+
 .from("usuarios")
+
 .select("*");
+
+
 
 
 
 if(error){
 
-document.getElementById("estado").innerHTML =
-"❌ Error: "+error.message;
+
+document.getElementById("estado").innerHTML=
+
+"❌ Error de conexión:<br>"+error.message;
+
+
+
+document.getElementById("estado").style.background="#ffebee";
+
+
 
 }
+
 else{
 
-document.getElementById("estado").innerHTML =
-"✅ Conexión correcta. Usuarios encontrados: "
-+ data.length;
+
+document.getElementById("estado").innerHTML=
+
+"✅ Conexión correcta con Supabase<br><br>"+
+
+"Usuarios encontrados: "+data.length;
+
+
+
+document.getElementById("estado").style.background="#e8f5e9";
+
+
 
 }
 
 
+
 }
 
 
-probar();
+
+probarConexion();
+
 
 
 </script>
 
 
+
 </body>
 
-</html>8
+</html>
